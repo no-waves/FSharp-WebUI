@@ -12,7 +12,7 @@
     <Version>0.0.1</Version>
     <Description>F# binding for WebUI</Description>
     <Authors>no-waves</Authors>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ProjectUrl>https://github.com/no-waves/FSharp-WebUI</ProjectUrl>
     <RepositoryUrl>https://github.com/no-waves/FSharp-WebUI</RepositoryUrl>
     <PackageTags>F# FSharp WebUI GUI Browser</PackageTags>
@@ -20,6 +20,15 @@
 
   <ItemGroup>
     <Compile Include="src/WebUI.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+    </None>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+    </None>
   </ItemGroup>
 
   <!-- Linux x64 native library -->
@@ -64,10 +73,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackagePath>runtimes</PackagePath>
     </Content>
-    <None Include="lib/LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>runtimes</PackagePath>
-    </None>
   </ItemGroup>
 
   <PropertyGroup>
