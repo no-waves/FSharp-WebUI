@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    
+    <!-- NuGet metadata -->
+    <PackageId>FSharp.WebUI</PackageId>
+    <Version>0.0.1</Version>
+    <Description>F# binding for WebUI</Description>
+    <Authors>no-waves</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <ProjectUrl>https://github.com/no-waves/FSharp-WebUI</ProjectUrl>
+    <RepositoryUrl>https://github.com/no-waves/FSharp-WebUI</RepositoryUrl>
+    <PackageTags>F# FSharp WebUI GUI Browser</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src/WebUI.fs" />
+  </ItemGroup>
+
+  <!-- Linux x64 native library -->
+  <ItemGroup>
+    <None Include="lib/linux-x64/libwebui-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>libwebui-2.so</Link>
+    </None>
+    <Content Include="lib/linux-x64/libwebui-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackagePath>runtimes/linux-x64/native/libwebui-2.so</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <!-- Windows x64 native library -->
+  <ItemGroup>
+    <None Include="lib/win-x64/webui-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>webui-2.dll</Link>
+    </None>
+    <Content Include="lib/win-x64/webui-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackagePath>runtimes/win-x64/native/webui-2.dll</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <!-- macOS arm64 native library -->
+  <ItemGroup>
+    <None Include="lib/macos-arm64/libwebui-2.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>libwebui-2.dylib</Link>
+    </None>
+    <Content Include="lib/macos-arm64/libwebui-2.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackagePath>runtimes/osx-arm64/native/libwebui-2.dylib</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <!-- WebUI License -->
+  <ItemGroup>
+    <Content Include="lib/LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackagePath>runtimes</PackagePath>
+    </Content>
+    <None Include="lib/LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>runtimes</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <WebUILibName>webui-2</WebUILibName>
+  </PropertyGroup>
+
+</Project>
