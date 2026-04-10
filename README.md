@@ -21,14 +21,13 @@ fsharp-webui/
 │   └── WebUITests/               # Simple test build
 │       ├── Tests.fs
 │       └── WebUITests.fsproj
-├── lib/
-  │   ├── linux-x64/                # Native WebUI library (Linux)
-  │   │   └── libwebui-2.so
-  │   ├── macos-arm64/             # Native WebUI library (macOS)
-  │   │   └── libwebui-2.dylib
-  │   └── win-x64/                  # Native WebUI library (Windows)
-  │       └── webui-2.dll
-  └── webui-linux-gcc-x64/         # WebUI C library source
+└── lib/
+    ├── linux-x64/                # Native WebUI library (Linux)
+    │   └── libwebui-2.so
+    ├── macos-arm64/             # Native WebUI library (macOS)
+    │   └── libwebui-2.dylib
+    └── win-x64/                  # Native WebUI library (Windows)
+        └── webui-2.dll
 ```
 
 ## Supported Platforms
