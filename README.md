@@ -2,6 +2,10 @@
 
 F# binding for [WebUI](https://github.com/webui-dev/webui) - Use any web browser as GUI.
 
+## Installation
+
+`dotnet add package FSharp.WebUI --version 0.0.1`
+
 ## Project Structure
 
 ```
