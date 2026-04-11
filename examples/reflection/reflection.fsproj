@@ -13,14 +13,10 @@
     <ProjectReference Include="..\..\fsharp-webui.fsproj" />
   </ItemGroup>
 
-  <!-- Embed the moved resources and provide the original logical names expected by the code -->
+  <!-- Embed the moved resources (use default logical names based on the project/assembly name) -->
   <ItemGroup>
-    <EmbeddedResource Include="index.html">
-      <LogicalName>webui_explo.index.html</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App.css">
-      <LogicalName>webui_explo.static.App.css</LogicalName>
-    </EmbeddedResource>
+    <EmbeddedResource Include="index.html" />
+    <EmbeddedResource Include="App.css" />
   </ItemGroup>
 
   <!-- Both native libraries -->
