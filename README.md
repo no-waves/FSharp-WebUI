@@ -2,6 +2,8 @@
 
 F# binding for [WebUI](https://github.com/webui-dev/webui) - Use any web browser as GUI.
 
+![Prettier example — 3x3 colored buttons](examples/prettier/screenshot.png)
+
 ## Installation
 
 `dotnet add package FSharp.WebUI --version 0.0.1`
