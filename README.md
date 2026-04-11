@@ -19,9 +19,14 @@ fsharp-webui/
 │   ├── simple-example/          # Runnable example
 │   │   ├── SimpleExample.fs
 │   │   └── simple-example.fsproj
-│   └── prettier/                # Pretty CSS buttons example
-│       ├── Prettier.fs
-│       └── prettier.fsproj
+│   ├── prettier/                # Pretty CSS buttons example
+│   │   ├── Prettier.fs
+│   │   └── prettier.fsproj
+│   └── reflection/              # Reflection example (embedded resource loader)
+│       ├── index.html
+│       ├── App.css
+│       ├── Reflection.fs
+│       └── reflection.fsproj
 ├── tests/
 │   └── WebUITests/              # Simple test build
 │       ├── Tests.fs
@@ -64,6 +69,14 @@ dotnet run --project examples/prettier
 # or
 dotnet build examples/prettier/prettier.fsproj
 ./bin/Debug/net10.0/prettier
+```
+
+Reflection (embedded resources) example — reads index.html and App.css from assembly resources:
+```bash
+dotnet run --project examples/reflection
+# or
+dotnet build examples/reflection/reflection.fsproj
+./bin/Debug/net10.0/reflection
 ```
 
 Note: examples use WebUI.Browser.Chromium by default in their sample code; change to another browser by passing a different Browser enum to WebUI.showBrowser if desired.

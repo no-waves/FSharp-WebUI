@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Reflection.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\fsharp-webui.fsproj" />
+  </ItemGroup>
+
+  <!-- Embed the moved resources and provide the original logical names expected by the code -->
+  <ItemGroup>
+    <EmbeddedResource Include="index.html">
+      <LogicalName>webui_explo.index.html</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.css">
+      <LogicalName>webui_explo.static.App.css</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Both native libraries -->
+  <ItemGroup>
+    <None Include="..\..\lib\linux-x64\libwebui-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>libwebui-2.so</Link>
+    </None>
+    <None Include="..\..\lib\win-x64\webui-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>webui-2.dll</Link>
+    </None>
+  </ItemGroup>
+</Project>
