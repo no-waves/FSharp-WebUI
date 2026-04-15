@@ -13,16 +13,5 @@
     <ProjectReference Include="..\..\fsharp-webui.fsproj" />
   </ItemGroup>
 
-  <!-- Both native libraries -->
-  <ItemGroup>
-    <None Include="..\..\lib/linux-x64\libwebui-2.so">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>libwebui-2.so</Link>
-    </None>
-    <None Include="..\..\lib\win-x64\webui-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>webui-2.dll</Link>
-    </None>
-  </ItemGroup>
 
 </Project>

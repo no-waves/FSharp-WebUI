@@ -14,37 +14,30 @@ F# binding for [WebUI](https://github.com/webui-dev/webui) - Use any web browser
 fsharp-webui/
 ├── fsharp-webui.fsproj          # Library project
 ├── src/
+│   ├── Bootstrap.fs             # Native bootstrap + cache + SHA256 verification
 │   └── WebUI.fs                 # Main library code
+├── buildTransitive/
+│   ├── FSharp.WebUI.props       # Default bootstrap properties
+│   └── FSharp.WebUI.targets     # Build-time bootstrap target
+├── tools/
+│   └── WebUI.Bootstrapper/      # Tiny managed helper invoked by MSBuild
 ├── examples/
 │   ├── simple-example/          # Runnable example
-│   │   ├── SimpleExample.fs
-│   │   └── simple-example.fsproj
 │   ├── prettier/                # Pretty CSS buttons example
-│   │   ├── Prettier.fs
-│   │   └── prettier.fsproj
 │   └── reflection/              # Reflection example (embedded resource loader)
-│       ├── index.html
-│       ├── App.css
-│       ├── Reflection.fs
-│       └── reflection.fsproj
-├── tests/
-│   └── WebUITests/              # Simple test build
-│       ├── Tests.fs
-│       └── WebUITests.fsproj
-└── lib/
-    ├── linux-x64/               # Native WebUI library (Linux)
-    │   └── libwebui-2.so
-    ├── macos-arm64/             # Native WebUI library (macOS)
-    │   └── libwebui-2.dylib
-    └── win-x64/                 # Native WebUI library (Windows)
-        └── webui-2.dll
+└── tests/
+    └── WebUITests/              # Simple test build
 ```
 
 ## Supported Platforms
 
-- Linux x64 (libwebui-2.so)
-- macOS arm64 (libwebui-2.dylib)
-- Windows x64 (webui-2.dll)
+Nightly upstream assets currently used:
+- Linux x64 → `webui-linux-gcc-x64.zip`
+- Linux ARM64 → `webui-linux-gcc-arm64.zip`
+- Linux ARM → `webui-linux-gcc-arm.zip`
+- macOS ARM64 → `webui-macos-clang-arm64.zip`
+- macOS x64 → `webui-macos-clang-x64.zip`
+- Windows x64 → `webui-windows-msvc-x64.zip`
 
 ## Build Commands
 
@@ -113,11 +106,38 @@ let main argv =
     0
 ```
 
+## Native Bootstrap (Nightly)
+
+Native binaries are **not redistributed** in this package. They are downloaded from WebUI nightly releases on first use/build, verified with SHA-256, and cached per user machine.
+
+Default release tag:
+- `nightly`
+
+Cache locations:
+- Windows: `%LocalAppData%/fsharp-webui/nightly/<asset>`
+- Linux: `${XDG_CACHE_HOME:-~/.cache}/fsharp-webui/nightly/<asset>`
+- macOS: `~/Library/Caches/fsharp-webui/nightly/<asset>`
+
+Refresh and overrides:
+- MSBuild refresh: `WebUIBootstrapRefresh=true`
+- Environment refresh: `WEBUI_BOOTSTRAP_REFRESH=true`
+- MSBuild native override: `WebUINativePath=/path/to/native`
+- Environment native override: `WEBUI_NATIVE_PATH=/path/to/native`
+- Optional tag override: `WebUIReleaseTag` / `WEBUI_RELEASE_TAG` (default remains `nightly`)
+
+## Smoke Test Script
+
+Run bootstrap smoke checks locally:
+
+```bash
+./scripts/smoke-bootstrap.sh
+```
+
+Optional:
+- `SKIP_NETWORK_TEST=1 ./scripts/smoke-bootstrap.sh` to skip the nightly download/verify test.
+
 ## Requirements
 
 - .NET 10.0+
 - A web browser (Chrome, Firefox, Edge, Safari, or Chromium)
-- Native libraries are included in the NuGet package for:
-  - Linux x64
-  - macOS arm64
-  - Windows x64
+- Network access to GitHub releases on first bootstrap (unless using native path override)

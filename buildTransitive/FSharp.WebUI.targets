@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <WebUIBootstrapperRelativePath>tools/WebUI.Bootstrapper/WebUI.Bootstrapper.dll</WebUIBootstrapperRelativePath>
+    <WebUIBootstrapperPath>$(MSBuildThisFileDirectory)..\$(WebUIBootstrapperRelativePath)</WebUIBootstrapperPath>
+    <WebUIBootstrapperRefreshLower>$([System.String]::Copy('$(WebUIBootstrapRefresh)').ToLowerInvariant())</WebUIBootstrapperRefreshLower>
+  </PropertyGroup>
+
+  <Target Name="WebUIEnsureNativeLibs" BeforeTargets="PrepareForBuild">
+    <Message Importance="Low" Text="Ensuring WebUI native libraries for tag '$(WebUIReleaseTag)'..." />
+
+    <Exec
+      Command="dotnet exec &quot;$(WebUIBootstrapperPath)&quot;"
+      EnvironmentVariables="WEBUI_RELEASE_TAG=$(WebUIReleaseTag);WEBUI_BOOTSTRAP_REFRESH=$(WebUIBootstrapperRefreshLower);WEBUI_NATIVE_PATH=$(WebUINativePath)"
+      StandardOutputImportance="Low"
+      StandardErrorImportance="High"
+      ConsoleToMsBuild="true" />
+  </Target>
+</Project>
