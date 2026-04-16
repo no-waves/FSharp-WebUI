@@ -9,7 +9,7 @@
 
     <!-- NuGet metadata -->
     <PackageId>FSharp.WebUI</PackageId>
-    <Version>2.5.2</Version>
+    <Version>2.5.3</Version>
     <Description>F# binding for WebUI</Description>
     <Authors>no-waves</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -50,6 +50,7 @@
     <None Include="$(WebUIBootstrapperOutputDir)/WebUI.Bootstrapper.deps.json" Pack="true" PackagePath="tools/WebUI.Bootstrapper/" Visible="false" />
     <None Include="$(WebUIBootstrapperOutputDir)/WebUI.Bootstrapper.runtimeconfig.json" Pack="true" PackagePath="tools/WebUI.Bootstrapper/" Visible="false" />
     <None Include="$(WebUIBootstrapperOutputDir)/fsharp-webui.dll" Pack="true" PackagePath="tools/WebUI.Bootstrapper/" Visible="false" />
+    <None Include="$(WebUIBootstrapperOutputDir)/FSharp.Core.dll" Pack="true" PackagePath="tools/WebUI.Bootstrapper/" Visible="false" />
   </ItemGroup>
 
 </Project>
