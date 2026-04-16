@@ -1,95 +1,89 @@
-# FSharp.WebUI
+# FSharp.WebUI v2.5.2
 
-F# binding for [WebUI](https://github.com/webui-dev/webui) - Use any web browser as GUI.
+F# bindings for WebUI — use any web browser as a GUI.
 
-![Prettier example — 3x3 colored buttons](examples/prettier/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/webui-dev/webui-logo/main/screenshot.png)
+
+WebUI lets applications use a real web browser as the user interface while keeping the host program lightweight. This repository contains F# bindings and helpers that integrate WebUI with .NET applications.
+
+WebUI repo: https://github.com/webui-dev/webui
+
+## Features
+
+- Portable (needs only a web browser at runtime)
+- Lightweight (small library, low memory footprint)
+- Fast binary communication protocol between host and frontend
+- Multi-platform & multi-browser support
+- Uses a private browser profile for safety
+- Native runtime provided by WebUI (downloaded on first use or supplied manually)
 
 ## Installation
 
-`dotnet add package FSharp.WebUI --version 0.0.1`
+`dotnet add package FSharp.WebUI --version 2.5.2`
 
-## Project Structure
 
-```
-fsharp-webui/
-├── fsharp-webui.fsproj          # Library project
-├── src/
-│   └── WebUI.fs                 # Main library code
-├── examples/
-│   ├── simple-example/          # Runnable example
-│   │   ├── SimpleExample.fs
-│   │   └── simple-example.fsproj
-│   ├── prettier/                # Pretty CSS buttons example
-│   │   ├── Prettier.fs
-│   │   └── prettier.fsproj
-│   └── reflection/              # Reflection example (embedded resource loader)
-│       ├── index.html
-│       ├── App.css
-│       ├── Reflection.fs
-│       └── reflection.fsproj
-├── tests/
-│   └── WebUITests/              # Simple test build
-│       ├── Tests.fs
-│       └── WebUITests.fsproj
-└── lib/
-    ├── linux-x64/               # Native WebUI library (Linux)
-    │   └── libwebui-2.so
-    ├── macos-arm64/             # Native WebUI library (macOS)
-    │   └── libwebui-2.dylib
-    └── win-x64/                 # Native WebUI library (Windows)
-        └── webui-2.dll
-```
+## Supported platforms & upstream assests:
 
-## Supported Platforms
+- Linux x64 → `webui-linux-gcc-x64.zip`
+- Linux ARM64 → `webui-linux-gcc-arm64.zip`
+- Linux ARM → `webui-linux-gcc-arm.zip`
+- macOS ARM64 → `webui-macos-clang-arm64.zip`
+- macOS x64 → `webui-macos-clang-x64.zip`
+- Windows x64 → `webui-windows-msvc-x64.zip`
 
-- Linux x64 (libwebui-2.so)
-- macOS arm64 (libwebui-2.dylib)
-- Windows x64 (webui-2.dll)
-
-## Build Commands
+## Build commands
 
 ### Library
+
 ```bash
 dotnet build fsharp-webui.fsproj
 ```
 
-### Example Applications
+### Example applications
 
-Simple example:
+#### Simple example
+
 ```bash
 dotnet run --project examples/simple-example
 # or
 dotnet build examples/simple-example/simple-example.fsproj
-./bin/Debug/net10.0/simple-example
+./examples/simple-example/bin/Debug/net10.0/simple-example 
 ```
 
-Prettier (3x3 pretty buttons) example — default browser: Chromium:
+#### Prettier CSS example
+![CSS example](./examples/prettier/prettier-example.png)
+
 ```bash
 dotnet run --project examples/prettier
 # or
 dotnet build examples/prettier/prettier.fsproj
-./bin/Debug/net10.0/prettier
+./examples/prettier/bin/Debug/net10.0/prettier
 ```
 
-Reflection (embedded resources) example — reads index.html and App.css from assembly resources:
+#### Reflection example — embeds assembly resources
+![Reflection example](./examples/reflection/reflection-example.png)
+
 ```bash
 dotnet run --project examples/reflection
 # or
 dotnet build examples/reflection/reflection.fsproj
-./bin/Debug/net10.0/reflection
+./examples/reflection/bin/Debug/net10.0/reflection
 ```
 
-Note: examples use WebUI.Browser.Chromium by default in their sample code; change to another browser by passing a different Browser enum to WebUI.showBrowser if desired.
+Note: the examples use WebUI.Browser.Chromium by default in their sample code; change to another browser by passing a different Browser enum to WebUI.showBrowser if desired.
 
-### Tests
+#### Tests
+
 ```bash
 dotnet run --project tests/WebUITests
 # or
 dotnet build tests/WebUITests/WebUITests.fsproj
-./bin/Debug/net10.0/WebUITests
+./tests/WebUITests/bin/Debug/net10.0/WebUITests
 ```
 
-## Usage Example
+## Usage
+
+### Simple program
 
 ```fsharp
 open WebUI
@@ -113,11 +107,55 @@ let main argv =
     0
 ```
 
-## Requirements
+### Info
+
+#### Native bootstrap (nightly)
+
+Native binaries are not redistributed in this package. They are downloaded from WebUI nightly releases on first use/build, verified with SHA-256, and cached per user machine.
+
+Default release tag: `nightly`
+
+#### Cache locations:
+- Windows: `%LocalAppData%/fsharp-webui/nightly/<asset>`
+- Linux: `${XDG_CACHE_HOME:-~/.cache}/fsharp-webui/nightly/<asset>`
+- macOS: `~/Library/Caches/fsharp-webui/nightly/<asset>`
+
+#### Refresh and overrides:
+- MSBuild refresh: `WebUIBootstrapRefresh=true`
+- Environment refresh: `WEBUI_BOOTSTRAP_REFRESH=true`
+- MSBuild native override: `WebUINativePath=/path/to/native`
+- Environment native override: `WEBUI_NATIVE_PATH=/path/to/native`
+- Optional tag override: `WebUIReleaseTag` / `WEBUI_RELEASE_TAG` (default remains `nightly`)
+
+#### Bootstrap testing
+
+```bash
+./scripts/smoke-bootstrap.sh
+```
+
+##### Optional:
+- `SKIP_NETWORK_TEST=1 ./scripts/smoke-bootstrap.sh` to skip the nightly download/verify test.
+
+#### Supported web browsers
+
+- Chrome
+- Chromium
+- Firefox
+- Edge
+- Safari
+- AnyBrowser (automatic selection — let the native runtime pick the best available browser)
+
+#### Requirements
 
 - .NET 10.0+
 - A web browser (Chrome, Firefox, Edge, Safari, or Chromium)
-- Native libraries are included in the NuGet package for:
-  - Linux x64
-  - macOS arm64
-  - Windows x64
+- Network access to GitHub releases on first bootstrap (unless using native path override)
+
+#### Documentation
+
+- WebUI repo: https://github.com/webui-dev/webui
+- WebUI core documentation: https://webui.me/docs
+
+## License
+
+Licensed under the MIT License.

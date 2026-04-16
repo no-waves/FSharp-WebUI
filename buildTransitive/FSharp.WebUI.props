@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <WebUIReleaseTag Condition="'$(WebUIReleaseTag)' == ''">nightly</WebUIReleaseTag>
+    <WebUIBootstrapRefresh Condition="'$(WebUIBootstrapRefresh)' == ''">false</WebUIBootstrapRefresh>
+    <WebUINativePath Condition="'$(WebUINativePath)' == ''"></WebUINativePath>
+  </PropertyGroup>
+</Project>
