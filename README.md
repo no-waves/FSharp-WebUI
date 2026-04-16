@@ -1,4 +1,4 @@
-# FSharp.WebUI
+# FSharp.WebUI v2.5.2
 
 F# bindings for WebUI — use any web browser as a GUI.
 
@@ -19,7 +19,7 @@ WebUI repo: https://github.com/webui-dev/webui
 
 ## Installation
 
-`dotnet add package FSharp.WebUI --version 0.0.1`
+`dotnet add package FSharp.WebUI --version 2.5.2`
 
 
 ## Supported platforms & upstream assests:
