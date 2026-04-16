@@ -138,15 +138,12 @@ Default release tag: `nightly`
 
 #### Supported web browsers
 
-| Browser | Windows | macOS | Linux |
-| ------- | ------- | ----- | ----- |
-| Mozilla Firefox | ✔️ | ✔️ | ✔️ |
-| Google Chrome | ✔️ | ✔️ | ✔️ |
-| Microsoft Edge | ✔️ | ✔️ | ✔️ |
-| Chromium | ✔️ | ✔️ | ✔️ |
-| Brave | ✔️ | ✔️ | ✔️ |
-| Vivaldi | ✔️ | ✔️ | ✔️ |
-| Yandex | ✔️ | ✔️ | ✔️ |
+- Chrome
+- Chromium
+- Firefox
+- Edge
+- Safari
+- AnyBrowser (automatic selection — let the native runtime pick the best available browser)
 
 #### Requirements
 
