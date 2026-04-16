@@ -47,7 +47,7 @@ dotnet build fsharp-webui.fsproj
 dotnet run --project examples/simple-example
 # or
 dotnet build examples/simple-example/simple-example.fsproj
-./bin/Debug/net10.0/simple-example
+./examples/simple-example/bin/Debug/net10.0/simple-example 
 ```
 
 #### Prettier CSS example
@@ -57,7 +57,7 @@ dotnet build examples/simple-example/simple-example.fsproj
 dotnet run --project examples/prettier
 # or
 dotnet build examples/prettier/prettier.fsproj
-./bin/Debug/net10.0/prettier
+./examples/prettier/bin/Debug/net10.0/prettier
 ```
 
 #### Reflection example — embeds assembly resources
@@ -67,7 +67,7 @@ dotnet build examples/prettier/prettier.fsproj
 dotnet run --project examples/reflection
 # or
 dotnet build examples/reflection/reflection.fsproj
-./bin/Debug/net10.0/reflection
+./examples/reflection/bin/Debug/net10.0/reflection
 ```
 
 Note: the examples use WebUI.Browser.Chromium by default in their sample code; change to another browser by passing a different Browser enum to WebUI.showBrowser if desired.
@@ -78,7 +78,7 @@ Note: the examples use WebUI.Browser.Chromium by default in their sample code; c
 dotnet run --project tests/WebUITests
 # or
 dotnet build tests/WebUITests/WebUITests.fsproj
-./bin/Debug/net10.0/WebUITests
+./tests/WebUITests/bin/Debug/net10.0/WebUITests
 ```
 
 ## Usage
